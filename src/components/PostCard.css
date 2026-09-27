@@ -1,0 +1,220 @@
+/* ====== POST CARD BASE ====== */
+.post-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.post-card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ====== GRID VIEW ====== */
+.post-card--grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card--grid .post-card-image {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-card--grid .post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-card--grid:hover .post-card-image img {
+  transform: scale(1.06);
+}
+
+.post-card--grid .post-card-body {
+  padding: 26px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== LIST VIEW ====== */
+.post-card--list {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-card--list .post-card-image-link {
+  flex-shrink: 0;
+  width: 320px;
+}
+
+.post-card--list .post-card-image {
+  width: 320px;
+  height: 100%;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-card--list .post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-card--list:hover .post-card-image img {
+  transform: scale(1.06);
+}
+
+.post-card--list .post-card-body {
+  padding: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== IMAGE COMMON ====== */
+.post-card-image {
+  position: relative;
+}
+
+.post-card-image-link {
+  display: block;
+}
+
+.post-card-category {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--border-light);
+}
+
+/* ====== BODY CONTENT ====== */
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.post-card-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-card-dot {
+  opacity: 0.5;
+}
+
+.post-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  transition: color var(--transition);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-title:hover {
+  color: var(--orange);
+}
+
+.post-card-excerpt {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.post-card-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-card-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-light);
+}
+
+.post-card-author-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.post-card-author-date {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.post-card-read-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange);
+  transition: gap var(--transition);
+}
+
+.post-card-read-link:hover {
+  gap: 10px;
+}
+
+/* Responsive list view */
+@media (max-width: 768px) {
+  .post-card--list {
+    flex-direction: column;
+  }
+
+  .post-card--list .post-card-image-link {
+    width: 100%;
+  }
+
+  .post-card--list .post-card-image {
+    width: 100%;
+    height: 220px;
+  }
+}
