@@ -1,34 +1,29 @@
-name: Deploy to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
       - main
-
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Required permissions for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -37,17 +32,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run build
+      - name: Build React app
         run: npm run build
 
-      - name: Upload Pages artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the Vite production build output
-          path: dist
+          path: ./dist
 
   deploy:
-    name: Deploy
     needs: build
     runs-on: ubuntu-latest
 
@@ -58,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
